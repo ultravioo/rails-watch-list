@@ -10,7 +10,7 @@ before_action :set_list, only: [:new, :create]
     @bookmark = Bookmark.new(bookmark_params)
     @bookmark.list = @list
     if @bookmark.save
-    redirect_to list_path(@list)
+    redirect_to list_path(@list.id)
     else
       render :new
     end
@@ -24,7 +24,7 @@ before_action :set_list, only: [:new, :create]
   private
 
   def bookmark_params
-    params.require(:bookmark).permit(:comment, :movie_id, :list_id)
+    params.require(:bookmark).permit(:comment, :movie_id)
   end
 
   def set_bookmark
